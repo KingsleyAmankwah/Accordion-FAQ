@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 
+import React, {useState} from 'react';
+import Questions from './Questions'
+import data from './data'
 function App() {
+  const [questions,setQuestions] = useState(data);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="container">
+          <h1>FAQ</h1>
+         
+              <div className="info">
+              
+                {
+                  questions.map((question) => {
+                    //Return each question based on its index(id)
+                    //{... question }-Spread operator was used to pass in the rest of the properties
+                    return <Questions key={question.id} {...question} />
+                  })
+                }
+              </div>
+        </div>
     </div>
   );
 }
